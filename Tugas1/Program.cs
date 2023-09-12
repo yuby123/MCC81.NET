@@ -64,10 +64,10 @@ public class Program
 
     static void PrintEvenOdd(int limit, string choice)
     {
-        // Cetak judul berdasarkan limit
+
         Console.WriteLine($"Print bilangan dari 1 - {limit}:");
 
-        // Cek validitas input limit
+
         if (limit < 1)
         {
             Console.WriteLine("Input Limit Tidak Valid!!");
@@ -99,12 +99,10 @@ public class Program
     {
         if (input < 1)
         {
-            // Pesan kesalahan jika input tidak valid.
             Console.WriteLine("Invalid Input!!!");
         }
         else if (input % 2 == 0)
         {
-            // Memeriksa apakah angka genap atau ganjil dan mencetak hasilnya.
             Console.WriteLine($"{input} adalah angka genap.");
         }
         else
@@ -117,7 +115,6 @@ public class Program
 
     public static void Main()
     {
-        // Memanggil menu program saat program dimulai.
         Menu();
     }
 }
