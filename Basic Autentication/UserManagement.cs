@@ -44,11 +44,23 @@ internal class UserManagement
                 Console.WriteLine("Password must have at least 8 characters with at least one Capital letter, one lowercase letter, and one number.");
             }
         } while (!isValidPassword);
-        
+
+
+        int nextId = 1; // Menentukan ID berikutnya
+        if (users.Count > 0)
+        {
+            nextId = users.Max(u => u.userId) + 1;
+        }
+
+        // Mengecek apakah ID sudah ada dalam daftar pengguna
+        while (users.Any(u => u.userId == nextId))
+        {
+            nextId++; // Menambahkan 1 ke ID jika sudah ada
+        }
 
         var user = new Users
         {
-            userId = users.Count + 1,
+            userId = nextId,
             FirstName = firstName,
             LastName = lastName,
             Username = username,
@@ -57,7 +69,6 @@ internal class UserManagement
 
         users.Add(user);
 
-        
         Console.WriteLine("\nUser data has been successfully created.");
         Console.ReadLine();
     }
@@ -65,7 +76,6 @@ internal class UserManagement
 
     public static bool IsUsernameTaken(string username)
     {
-        // Check if the username already exists in the list of users
         return users.Any(user => user.Username == username);
     }
 
@@ -197,23 +207,18 @@ internal class UserManagement
         Console.Write("Id Yang Ingin Dihapus: ");
         if (int.TryParse(Console.ReadLine(), out int userId))
         {
-            if (userId >= 1 && userId <= users.Count)
+            Users userDelete = users.FirstOrDefault(u => u.userId == userId);
+            if (userDelete != null)
             {
-                Users userToDelete = users[userId - 1];
-                users.Remove(userToDelete);
-                Console.WriteLine("Akun Berhasil Di Hapus");
+                users.Remove(userDelete);
+                Console.WriteLine($"Data dengan id {userId} berhasil dihapus ! \n");
             }
             else
             {
-                Console.WriteLine("Invalid ID. User not found.");
+                Console.WriteLine($"Data dengan id {userId} tidak ada !");
             }
         }
-        else
-        {
-            Console.WriteLine("Invalid input. Please enter a valid ID.");
-        }
     }
-
     public void SearchUser()
     {
         Console.Clear();
