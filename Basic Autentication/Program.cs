@@ -7,7 +7,6 @@ namespace BasicAuth
         public static void Menu()
         {
             UserManagement user1 = new UserManagement();
-            UserInterface user2 = new UserInterface();
             int choice;
             while (true)
             {
@@ -28,10 +27,10 @@ namespace BasicAuth
                             user1.CreateUser();
                             break;
                         case 2:
-                            user2.ShowUsers();
+                            user1.ShowUsers();
                             break;
                         case 3:
-                            user2.SearchUser();
+                            user1.SearchUser();
                             break;
                         case 4:
                             user1.LoginUser();
@@ -59,5 +58,5 @@ namespace BasicAuth
             Menu();
         }
 
-    } 
+    }
 }
